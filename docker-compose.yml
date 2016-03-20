@@ -1,0 +1,18 @@
+db:
+  image: postgres
+  environment:
+    POSTGRES_USER: socek
+    POSTGRES_PASSWORD: kocham-marka-123
+
+web:
+  build: .
+  command: python manage.py runserver 0.0.0.0:8000
+  volumes:
+    - ./webapp/:/code/
+    - ./webapp/static/:/static/
+    - ./webapp/media/:/media/
+  ports:
+    - "8000:8000"
+  links:
+    - db
+
